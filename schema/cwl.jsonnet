@@ -1,6 +1,7 @@
 {
   protocol: "CommonWorkflowLanguage",
   namespace: "com.github.common_workflow_language",
+  version:: "draft-2",
 
   /* Manage all of the CWL types as "classes" so that we can refer to them by
      name in each source file. */

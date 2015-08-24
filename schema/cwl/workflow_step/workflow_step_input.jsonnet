@@ -4,7 +4,7 @@ local field = Avro.field;
 
 local Util = import "../../util.jsonnet";
 local doc = Util.doc;
-local doc = Util.default;
+local default = Util.default;
 
 local CWL = import "../../cwl.jsonnet";
 local Any = CWL.classes.Any;

@@ -12,6 +12,7 @@ local FileClass = CWL.classes.FileClass;
 doc("Represents a file (or group of files if `secondaryFiles` is specified) that
     must be accessible by tools using standard POSIX file system call API such
     as open(2) and read(2).") +
+
 record("File") {
   fields: [
     doc("Must be `File` to indicate this object describes a file.") +

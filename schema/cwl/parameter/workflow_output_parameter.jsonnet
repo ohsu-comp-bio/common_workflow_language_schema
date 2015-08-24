@@ -13,6 +13,7 @@ local OutputParameter = CWL.classes.OutputParameter;
 doc("Describe an output parameter of a workflow.  The parameter must be
     connected to one or more parameters defined in the workflow that will
     provide the value of the output parameter.") +
+
 OutputParameter + record("WorkflowOutputParameter") {
   fields +: [
     doc("Specifies one or more workflow parameters that will provide this output

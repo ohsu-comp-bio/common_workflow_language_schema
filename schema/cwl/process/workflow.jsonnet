@@ -30,8 +30,8 @@ doc("A workflow is a process consisting of one or more `steps`.  Each
 
     [ScatterFeatureRequirement](#scatterfeaturerequirement) and
     [SubworkflowFeatureRequirement](#subworkflowfeaturerequirement) are
-    available as standard extensions to core workflow semantics.
-") +
+    available as standard extensions to core workflow semantics.") +
+
 Process + record("Workflow") {
   fields +: [
     field("class", Avro.string),

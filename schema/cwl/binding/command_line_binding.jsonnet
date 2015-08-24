@@ -40,6 +40,7 @@ doc("When listed under `inputBinding` in the input schema, the term
           which `inputBinding` is specified.
 
       - **null**: Add nothing.") +
+
 Binding + record("CommandLineBinding") {
   fields +: [
     doc("The sorting key.  Default position is 0.") +

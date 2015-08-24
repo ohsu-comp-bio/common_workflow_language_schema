@@ -6,6 +6,7 @@ local doc = Util.doc;
 
 doc("The input link merge method, described in
     [WorkflowStepInput](#workflowstepinput).") +
+
 enum("LinkMergeMethod", [
   "MERGE_NESTED",
   "MERGE_FLATTENED"

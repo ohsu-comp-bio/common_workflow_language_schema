@@ -126,6 +126,7 @@ doc("A CommandLineTool process is a process implementation for executing a
     applying output bindings to the tool output.  Output bindings are
     associated with output parameters using the `outputBinding` field.  See
     [`CommandOutputBinding`](#commandoutputbinding) for details.") +
+
 Process + record("CommandLineTool") {
   fields +: [
     field("class", Avro.string),

@@ -11,6 +11,7 @@ local EnvironmentDef = CWL.classes.EnvironmentDef;
 
 doc("Define a list of environment variables which will be set in the
     execution environment of the tool.  See `EnvironmentDef` for details.") +
+
 ProcessRequirement + record("EnvVarRequirement") {
   fields +: [
     doc("The list of environment variables.") +

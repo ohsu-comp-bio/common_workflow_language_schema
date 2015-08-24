@@ -16,6 +16,7 @@ local ProcessRequirement = CWL.classes.ProcessRequirement;
 doc("The base executable type in CWL is the `Process` object defined by the
     document.  Note that the `Process` object is abstract and cannot be directly
     executed.") +
+
 record("Process") {
   fields: [
     doc("The unique identifier for this process object.") +

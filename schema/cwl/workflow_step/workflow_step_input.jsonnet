@@ -42,6 +42,7 @@ doc("The input of a workflow step connects an upstream parameter (from the
       2. Source parameters which are arrays are concatenated.
          Source parameters which are single element types are appended as
          single elements.") +
+
 record("WorkflowStepInput") {
   fields: [
     doc("A unique identifier for this workflow input parameter.") +

@@ -16,6 +16,7 @@ doc("Describes how to generate an output parameter based on the files produced
       - glob
       - loadContents
       - outputEval") +
+
 Binding + record("CommandOutputBinding") {
   fields +: [
     doc("Find files relative to the output directory, using POSIX glob(3)

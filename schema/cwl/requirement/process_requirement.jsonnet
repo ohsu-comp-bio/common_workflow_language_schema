@@ -11,6 +11,7 @@ doc("A process requirement declares a prerequisite that may or must be fulfilled
 
     Process requirements are the primary mechanism for specifying extensions to
     the CWL core specification.") +
+
 record("ProcessRequirement") {
   fields: [
     doc("The specific requirement type.") +

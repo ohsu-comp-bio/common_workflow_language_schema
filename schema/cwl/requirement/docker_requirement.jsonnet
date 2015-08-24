@@ -37,6 +37,7 @@ doc("Indicates that a workflow component should be run in a
     DockerRequirement, the environment variables must be provided to Docker
     using `--env` or `--env-file` and interact with the container's preexisting
     environment as defined by Docker.") +
+
 ProcessRequirement + record("DockerRequirement") {
   fields +: [
     doc("Specify a Docker image to retrieve using `docker pull`.") +

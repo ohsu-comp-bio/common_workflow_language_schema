@@ -17,6 +17,7 @@ doc("This field consists of an
     in `schemaDefs`, it is an error.  The entries in `schemaDefs` must be
     processed in the order listed such that later schema definitions may refer
     to earlier schema definitions.") +
+
 ProcessRequirement + record("SchemaDefRequirement") {
   fields +: [
     doc("The list of type definitions") +

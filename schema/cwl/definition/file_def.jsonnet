@@ -11,6 +11,7 @@ local Expression = CWL.classes.Expression;
 doc("Define a file that must be placed in the designated output directory
     prior to executing the command line tool.  May be the result of executing an
     expression, such as building a configuration file from a template.") +
+
 record("FileDef") {
   fields: [
     doc("The name of the file to create in the output directory") +

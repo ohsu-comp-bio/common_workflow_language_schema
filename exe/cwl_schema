@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+require 'thor'
+require 'common_workflow_language_schema'
+
+class App < Thor
+
+  desc "generate", "Generate the CWL version"
+  option :doc, type: :boolean
+  def generate
+    puts CommonWorkflowLanguageSchema::Schema.to_json(options[:doc])
+  end
+
+  desc "version", "List schema version"
+  def version
+    puts CommonWorkflowLanguageSchemas::Schema::VERSION
+  end
+end
+
+App.start(ARGV)

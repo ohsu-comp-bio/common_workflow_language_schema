@@ -34,4 +34,16 @@ local util = import "util.jsonnet";
       type: util.normalizeObject(types),
     },
 
+  types:: [
+    "boolean",
+    "bytes",
+    "double",
+    "float",
+    "int",
+    "long",
+    "null",
+    "string",
+  ],
+
+  allTypes:: self.types + [self.array(self.types)],
 }

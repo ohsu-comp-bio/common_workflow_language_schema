@@ -6,7 +6,6 @@ local Util = import "../../util.jsonnet";
 local doc = Util.doc;
 
 local CWL = import "../../cwl.jsonnet";
-local Any = CWL.classes.Any;
 local LinkMergeMethod = CWL.classes.LinkMergeMethod;
 local Process = CWL.classes.Process;
 local ProcessRequirement = CWL.classes.ProcessRequirement;
@@ -91,7 +90,7 @@ record("WorkflowStep") {
         workflow engine that may be helpful in executing this workflow step. It
         is not an error if an implementation cannot satisfy all hints, however
         the implementation may report a warning.") +
-    field("hints", [Avro.Null, Avro.array([Any])]),
+    field("hints", Avro.allTypes),
 
     doc("A short, human-readable label of this process object.") +
     field("label", [Avro.Null, Avro.string]),

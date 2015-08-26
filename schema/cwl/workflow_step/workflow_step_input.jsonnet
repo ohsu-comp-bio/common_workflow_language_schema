@@ -7,7 +7,6 @@ local doc = Util.doc;
 local default = Util.default;
 
 local CWL = import "../../cwl.jsonnet";
-local Any = CWL.classes.Any;
 local LinkMergeMethod = CWL.classes.LinkMergeMethod;
 
 doc("The input of a workflow step connects an upstream parameter (from the
@@ -59,6 +58,6 @@ record("WorkflowStepInput") {
 
     doc("The default value for this parameter if there is no `source`
         field.") +
-    field("default", [Avro.Null, Any]),
+    field("default", Avro.allTypes),
   ]
 }

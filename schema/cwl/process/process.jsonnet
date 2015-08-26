@@ -6,7 +6,7 @@ local Util = import "../../util.jsonnet";
 local doc = Util.doc;
 
 local CWL = import "../../cwl.jsonnet";
-local Any = CWL.classes.Any;
+local CommandInputParameter = CWL.classes.InputParameter;
 local Expression = CWL.classes.Expression;
 local InputParameter = CWL.classes.InputParameter;
 local OutputParameter = CWL.classes.OutputParameter;
@@ -27,7 +27,9 @@ record("Process") {
         values.  Input parameters include a schema for each parameter which is
         used to validate the input object.  It may also be used build a user
         interface for constructing the input object.") +
-    field("inputs", Avro.array([InputParameter])),
+    field("inputs", [
+      Avro.array([CommandInputParameter, InputParameter]),
+    ]),
 
     doc("Defines the parameters representing the output of the process.  May be
         used to generate and/or validate the output object.") +
@@ -45,7 +47,7 @@ record("Process") {
         workflow engine that may be helpful in executing this process.  It is
         not an error if an implementation cannot satisfy all hints, however
         the implementation may report a warning.") +
-    field("hints", [Avro.Null, Avro.array([Any])]),
+    field("hints", Avro.allTypes),
 
     doc("A short, human-readable label of this process object.") +
     field("label", [Avro.Null, Avro.string]),

@@ -4,14 +4,6 @@
   "types": [
     {
       "type": "enum",
-      "name": "Any",
-      "namespace": "com.github.common_workflow_language",
-      "symbols": [
-        "ANY"
-      ]
-    },
-    {
-      "type": "enum",
       "name": "JsonPointer",
       "namespace": "com.github.common_workflow_language",
       "symbols": [
@@ -81,8 +73,7 @@
         "ENUM",
         "ARRAY",
         "MAP",
-        "FILE",
-        "ANY"
+        "FILE"
       ]
     },
     {
@@ -554,12 +545,15 @@
         },
         {
           "name": "inputs",
-          "type": {
-            "type": "array",
-            "items": [
-              "com.github.common_workflow_language.InputParameter"
-            ]
-          }
+          "type": [
+            {
+              "type": "array",
+              "items": [
+                "com.github.common_workflow_language.InputParameter",
+                "com.github.common_workflow_language.InputParameter"
+              ]
+            }
+          ]
         },
         {
           "name": "outputs",
@@ -585,11 +579,25 @@
         {
           "name": "hints",
           "type": [
+            "boolean",
+            "bytes",
+            "double",
+            "float",
+            "int",
+            "long",
             "null",
+            "string",
             {
               "type": "array",
               "items": [
-                "com.github.common_workflow_language.Any"
+                "boolean",
+                "bytes",
+                "double",
+                "float",
+                "int",
+                "long",
+                "null",
+                "string"
               ]
             }
           ]
@@ -977,12 +985,15 @@
         },
         {
           "name": "inputs",
-          "type": {
-            "type": "array",
-            "items": [
-              "com.github.common_workflow_language.InputParameter"
-            ]
-          }
+          "type": [
+            {
+              "type": "array",
+              "items": [
+                "com.github.common_workflow_language.InputParameter",
+                "com.github.common_workflow_language.InputParameter"
+              ]
+            }
+          ]
         },
         {
           "name": "outputs",
@@ -1008,11 +1019,25 @@
         {
           "name": "hints",
           "type": [
+            "boolean",
+            "bytes",
+            "double",
+            "float",
+            "int",
+            "long",
             "null",
+            "string",
             {
               "type": "array",
               "items": [
-                "com.github.common_workflow_language.Any"
+                "boolean",
+                "bytes",
+                "double",
+                "float",
+                "int",
+                "long",
+                "null",
+                "string"
               ]
             }
           ]
@@ -1342,12 +1367,15 @@
         },
         {
           "name": "inputs",
-          "type": {
-            "type": "array",
-            "items": [
-              "com.github.common_workflow_language.InputParameter"
-            ]
-          }
+          "type": [
+            {
+              "type": "array",
+              "items": [
+                "com.github.common_workflow_language.InputParameter",
+                "com.github.common_workflow_language.InputParameter"
+              ]
+            }
+          ]
         },
         {
           "name": "outputs",
@@ -1373,11 +1401,25 @@
         {
           "name": "hints",
           "type": [
+            "boolean",
+            "bytes",
+            "double",
+            "float",
+            "int",
+            "long",
             "null",
+            "string",
             {
               "type": "array",
               "items": [
-                "com.github.common_workflow_language.Any"
+                "boolean",
+                "bytes",
+                "double",
+                "float",
+                "int",
+                "long",
+                "null",
+                "string"
               ]
             }
           ]
@@ -1493,8 +1535,27 @@
         {
           "name": "default",
           "type": [
+            "boolean",
+            "bytes",
+            "double",
+            "float",
+            "int",
+            "long",
             "null",
-            "com.github.common_workflow_language.Any"
+            "string",
+            {
+              "type": "array",
+              "items": [
+                "boolean",
+                "bytes",
+                "double",
+                "float",
+                "int",
+                "long",
+                "null",
+                "string"
+              ]
+            }
           ]
         }
       ]
@@ -1555,11 +1616,25 @@
         {
           "name": "hints",
           "type": [
+            "boolean",
+            "bytes",
+            "double",
+            "float",
+            "int",
+            "long",
             "null",
+            "string",
             {
               "type": "array",
               "items": [
-                "com.github.common_workflow_language.Any"
+                "boolean",
+                "bytes",
+                "double",
+                "float",
+                "int",
+                "long",
+                "null",
+                "string"
               ]
             }
           ]
@@ -1614,12 +1689,15 @@
         },
         {
           "name": "inputs",
-          "type": {
-            "type": "array",
-            "items": [
-              "com.github.common_workflow_language.InputParameter"
-            ]
-          }
+          "type": [
+            {
+              "type": "array",
+              "items": [
+                "com.github.common_workflow_language.InputParameter",
+                "com.github.common_workflow_language.InputParameter"
+              ]
+            }
+          ]
         },
         {
           "name": "outputs",
@@ -1645,11 +1723,25 @@
         {
           "name": "hints",
           "type": [
+            "boolean",
+            "bytes",
+            "double",
+            "float",
+            "int",
+            "long",
             "null",
+            "string",
             {
               "type": "array",
               "items": [
-                "com.github.common_workflow_language.Any"
+                "boolean",
+                "bytes",
+                "double",
+                "float",
+                "int",
+                "long",
+                "null",
+                "string"
               ]
             }
           ]

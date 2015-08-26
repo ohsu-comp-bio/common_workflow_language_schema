@@ -6,7 +6,6 @@ local Util = import "../../util.jsonnet";
 local doc = Util.doc;
 
 local CWL = import "../../cwl.jsonnet";
-local Any = CWL.classes.Any;
 local Expression = CWL.classes.Expression;
 local Process = CWL.classes.Process;
 

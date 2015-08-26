@@ -12,7 +12,6 @@
     CommandOutputBinding: import "cwl/binding/command_output_binding.jsonnet",
 
     /* Datatypes */
-    Any: import "cwl/datatypes/any.jsonnet",
     Datatype: import "cwl/datatypes/datatype.jsonnet",
     JsonPointer: import "cwl/datatypes/json_pointer.jsonnet",
 

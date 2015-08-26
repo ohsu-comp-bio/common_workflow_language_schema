@@ -28,10 +28,8 @@ doc("CWL data types are based on Avro schema declarations.  Refer to the [Avro
     * **map**: An unordered collection of key/value pairs
 
     ## File type ##
-    See [File](#file) below.
+    See [File](#file) below.") +
 
-    ## Any type ##
-    See [Any](#any) below.") +
 enum("Datatype", [
   "NULL",
   "BOOLEAN",
@@ -46,5 +44,4 @@ enum("Datatype", [
   "ARRAY",
   "MAP",
   "FILE",
-  "ANY",
 ])

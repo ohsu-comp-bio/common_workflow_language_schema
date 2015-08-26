@@ -20,24 +20,14 @@ record("Parameter") + {
       Datatype,
       Schema,
       Avro.string,
-      Avro.array([
-        Datatype,
-        Schema,
-        Avro.string,
-      ]),
+      Avro.array([Datatype, Schema, Avro.string]),
     ]),
 
     doc("A short, human-readable label of this parameter object.") + 
-    Avro.field("label", [
-      Avro.Null,
-      Avro.string,
-    ]),
+    Avro.field("label", [Avro.Null, Avro.string]),
 
     doc("A long, human-readable description of this parameter object.") +
-    Avro.field("description", [
-      Avro.Null,
-      Avro.string,
-    ]),
+    Avro.field("description", [Avro.Null, Avro.string]),
 
     
     doc("Currently only applies if `type` is `File`.  A value of `true`

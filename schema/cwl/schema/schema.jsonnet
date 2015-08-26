@@ -30,10 +30,7 @@ record("Schema") {
     ]),
 
     doc("When `type` is `enum`, defines the set of valid symbols.") +
-    field("symbols", [
-      Avro.Null,
-      Avro.array([Avro.string]),
-    ]),
+    field("symbols", [Avro.Null, Avro.array([Avro.string])]),
 
     doc("When `type` is `array`, defines the type of the array elements.") +
     field("items", [

@@ -28,6 +28,5 @@ record("FileDef") {
         by bind mounts or file system links to avoid
         unnecessary copying of the input file.") +
     field("fileContent", [Avro.string, Expression]),
-
   ]
 }

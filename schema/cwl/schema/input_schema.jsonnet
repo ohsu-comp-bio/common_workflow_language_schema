@@ -13,9 +13,6 @@ Schema + record("InputSchema") {
   fields +: [ 
     doc("Describes how to handle a value in the input object convert it into a
         concrete form for execution, such as command line parameters.") +
-    field("inputBinding", [
-      Avro.Null,
-      Binding,
-    ])
+    field("inputBinding", [Avro.Null, Binding])
   ]
 }

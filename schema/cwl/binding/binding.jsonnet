@@ -13,10 +13,7 @@ record("Binding") {
     doc("Only applies when `type` is `File`.  Read up to the first 64 KiB of
         text from the file and place it in the 'contents' field of the file
         object for manipulation by expressions.") + 
-    field("loadContents", [
-      Avro.Null,
-      Avro.boolean
-    ]),
+    field("loadContents", [Avro.Null, Avro.boolean]),
 
     doc("Only applies when `type` is `File`.  Describes files that must be
         included alongside the primary file.

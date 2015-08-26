@@ -18,10 +18,7 @@ record("Expression") + {
   fields: [
     doc("Either `cwl:JsonPointer` or a reference to an
         ExpressionEngineRequirement defining which engine to use.") +
-    field("engine", [
-      JsonPointer,
-      Avro.string,
-    ]),
+    field("engine", [JsonPointer, Avro.string]),
 
     doc("The code to be executed by the expression engine.") +
     field("script", Avro.string)

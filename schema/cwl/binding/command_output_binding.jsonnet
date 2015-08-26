@@ -25,7 +25,7 @@ Binding + record("CommandOutputBinding") {
         return a string or an array of strings, which will then be evaluated as
         one or more glob patterns.  Only files which actually exist will be
         matched and returned.") +
-    field("outputEval", [
+    field("glob", [
       Avro.Null,
       Avro.string,
       Expression,

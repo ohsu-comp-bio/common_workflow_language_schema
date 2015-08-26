@@ -71,4 +71,5 @@
   /* Flatten our "classes" collection into an array. This collection gets
      rendered within the Avro protocol. */
   types: std.map(function(field) self.classes[field], std.objectFields(self.classes)),
+  messages: {},
 }

@@ -1,51 +1,56 @@
-require 'ptools'
-require 'json'
-
 module CommonWorkflowLanguageSchema
-  module Schema
+  class Schema
+    include TSort
 
-    def self.to_json(render_doc=false)
-      unless jsonnet_executable_exists?
-        raise 'jsonnet executable not found in path'
-      end
+    DEFAULT_SCHEMA_PATH = begin
+                            root_path = File.expand_path('../../../', __FILE__)
+                            File.join(root_path, 'schema', 'cwl.jsonnet')
+                          end
 
-      if render_doc
-        doc = `jsonnet --var DOC=true #{schema_path}`
+    attr_reader :schema
 
-        schema = JSON.parse(doc)
+    def initialize(schema_path=DEFAULT_SCHEMA_PATH)
+      schema_contents = ::CommonWorkflowLanguageSchema::Jsonnet::render(schema_path)
+      @schema = Hashie::Mash.new(schema_contents)
+    end
 
-        # We're going to treat doc strings in the schema as heredocs.
-        # Remove any leading indentation.
-        schema['types'].each do |type|
-          type['doc'].strip_heredoc! if type['doc']
+    def to_avro_protocol
+      # Clone the schema and update types based on a topological sort of the
+      # "types" field. Avro requires that you first define types before
+      # referencing them later on in the schema.
+      sorted_schema = @schema.clone.update(types: tsort)
 
-          if type['fields']
-            type['fields'].each do |field|
-              field['doc'].strip_heredoc! if field['doc']
-            end
-          end
-        end
-          
-        JSON.pretty_generate(schema)
+      # Serialize the schema to JSON. The Avro gem requires this.
+      serialized_schema = JSON.dump(sorted_schema)
 
-      else
-        `jsonnet --var DOC=false #{schema_path}`
-      end
+      # Finally, parse the protocol.
+      Avro::Protocol.parse(serialized_schema)
     end
 
     protected
 
-    def self.schema_path
-      File.join(root_dir, 'schema', 'cwl.jsonnet')
+    def tsort_each_node
+      @schema.types.each do |type|
+        yield type
+      end
     end
 
-    def self.jsonnet_executable_exists?
-      File.which('jsonnet')
+    def tsort_each_child(node, &block)
+      # For the given node, traverse through the "type" attribute,
+      # flattening any "array" types. Map each type back to schema.types
+      node.
+        fields.
+        to_a.
+        map(&:type).
+        flatten.
+        map{|type| type.is_a?(Hashie::Mash) ? type.items : type }.
+        flatten.
+        uniq.
+        map{|type| schema.types.find{|t| t.name == type}}.
+        compact.
+        each do |node|
+          yield node
+        end
     end
-
-    def self.root_dir
-      File.expand_path('../../../', __FILE__)
-    end
-
   end
 end

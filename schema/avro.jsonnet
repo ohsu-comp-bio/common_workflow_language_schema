@@ -15,6 +15,13 @@ local util = import "util.jsonnet";
       type: "record"
     },
 
+  enum(name, symbols)::
+    {
+      name: name,
+      type: "enum",
+      symbols: symbols,
+    },
+
   array(types)::
     {
       type: "array",
@@ -24,13 +31,7 @@ local util = import "util.jsonnet";
   field(name, types)::
     {
       name: name,
-      type: if std.type(types) == "array" then util.normalizeArray(types) else types,
+      type: util.normalizeObject(types),
     },
 
-  enum(name, symbols)::
-    {
-      name: name,
-      type: "enum",
-      symbols: symbols,
-    }
 }

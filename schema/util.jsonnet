@@ -5,12 +5,13 @@ local renderDoc = std.extVar("DOC") == "true";
 
   default(value):: {default: value},
 
+  isAvroObj:: function(obj) std.type(obj) == "object" && (obj.type == "record" || obj.type == "enum"),
+
   /* Helper function to normalize an array by replace any objects with its name
      in an array. */
-  normalizeArray(objects):: std.map(function(obj) if std.type(obj) == "object" && std.objectHas(obj, "name") then obj.name else obj, objects),
+  normalizeObject(obj):: if std.type(obj) == "array" then self.normalizeArray(obj)
+                            else if self.isAvroObj(obj) then obj.name
+                            else obj,
 
-  binding(object)::
-    {
-      binding:: object
-    }
+  normalizeArray(objects):: std.map(self.normalizeObject, objects),
 }

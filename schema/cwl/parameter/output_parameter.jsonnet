@@ -8,7 +8,7 @@ local doc = Util.doc;
 local CWL = import "../../cwl.jsonnet";
 local Parameter = CWL.classes.Parameter;
 
-Parameter + record("InputParameter") {
+Parameter + record("OutputParameter") {
   fields +: [
     doc("The unique identifier for this parameter object.") +
     field("id", "string"),

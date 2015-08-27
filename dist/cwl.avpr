@@ -166,7 +166,7 @@
     },
     {
       "type": "record",
-      "name": "CommandOutputBinding",
+      "name": "CommandLineBinding",
       "namespace": "com.github.common_workflow_language",
       "fields": [
         {
@@ -191,23 +191,34 @@
           ]
         },
         {
-          "name": "glob",
+          "name": "position",
+          "type": "int",
+          "default": 0
+        },
+        {
+          "name": "prefix",
           "type": [
             "null",
-            "string",
-            "com.github.common_workflow_language.Expression",
-            {
-              "type": "array",
-              "items": [
-                "string"
-              ]
-            }
+            "string"
           ]
         },
         {
-          "name": "outputEval",
+          "name": "separate",
+          "type": "boolean",
+          "default": true
+        },
+        {
+          "name": "itemSeparator",
           "type": [
             "null",
+            "string"
+          ]
+        },
+        {
+          "name": "valueFrom",
+          "type": [
+            "null",
+            "string",
             "com.github.common_workflow_language.Expression"
           ]
         }
@@ -251,17 +262,18 @@
         },
         {
           "name": "streamable",
-          "type": "boolean"
+          "type": "boolean",
+          "default": true
         },
         {
           "name": "id",
           "type": "string"
         },
         {
-          "name": "outputBinding",
+          "name": "inputBinding",
           "type": [
             "null",
-            "com.github.common_workflow_language.CommandOutputBinding"
+            "com.github.common_workflow_language.CommandLineBinding"
           ]
         }
       ]
@@ -363,7 +375,7 @@
     },
     {
       "type": "record",
-      "name": "CommandLineBinding",
+      "name": "CommandOutputBinding",
       "namespace": "com.github.common_workflow_language",
       "fields": [
         {
@@ -388,33 +400,108 @@
           ]
         },
         {
-          "name": "position",
-          "type": "int",
-          "default": 0
+          "name": "glob",
+          "type": [
+            "null",
+            "string",
+            "com.github.common_workflow_language.Expression",
+            {
+              "type": "array",
+              "items": [
+                "string"
+              ]
+            }
+          ]
         },
         {
-          "name": "prefix",
+          "name": "outputEval",
+          "type": [
+            "null",
+            "com.github.common_workflow_language.Expression"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "CommandOutputParameter",
+      "namespace": "com.github.common_workflow_language",
+      "fields": [
+        {
+          "name": "type",
+          "type": [
+            "null",
+            "com.github.common_workflow_language.Datatype",
+            "com.github.common_workflow_language.Schema",
+            "string",
+            {
+              "type": "array",
+              "items": [
+                "com.github.common_workflow_language.Datatype",
+                "com.github.common_workflow_language.Schema",
+                "string"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "label",
           "type": [
             "null",
             "string"
           ]
         },
         {
-          "name": "separate",
+          "name": "description",
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        {
+          "name": "streamable",
           "type": "boolean",
           "default": true
         },
         {
-          "name": "itemSeparator",
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "name": "outputBinding",
           "type": [
             "null",
-            "boolean"
+            "com.github.common_workflow_language.CommandOutputBinding"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "ProcessRequirement",
+      "namespace": "com.github.common_workflow_language",
+      "fields": [
+        {
+          "name": "class",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "FileDef",
+      "namespace": "com.github.common_workflow_language",
+      "fields": [
+        {
+          "name": "filename",
+          "type": [
+            "string",
+            "com.github.common_workflow_language.Expression"
           ]
         },
         {
-          "name": "valueFrom",
+          "name": "fileContent",
           "type": [
-            "null",
             "string",
             "com.github.common_workflow_language.Expression"
           ]
@@ -423,106 +510,205 @@
     },
     {
       "type": "record",
-      "name": "InputParameter",
+      "name": "CreateFileRequirement",
       "namespace": "com.github.common_workflow_language",
       "fields": [
         {
-          "name": "type",
-          "type": [
-            "null",
-            "com.github.common_workflow_language.Datatype",
-            "com.github.common_workflow_language.Schema",
-            "string",
-            {
-              "type": "array",
-              "items": [
-                "com.github.common_workflow_language.Datatype",
-                "com.github.common_workflow_language.Schema",
-                "string"
-              ]
-            }
-          ]
-        },
-        {
-          "name": "label",
-          "type": [
-            "null",
-            "string"
-          ]
-        },
-        {
-          "name": "description",
-          "type": [
-            "null",
-            "string"
-          ]
-        },
-        {
-          "name": "streamable",
-          "type": "boolean"
-        },
-        {
-          "name": "id",
+          "name": "class",
           "type": "string"
         },
         {
-          "name": "inputBinding",
+          "name": "fileDef",
+          "type": {
+            "type": "array",
+            "items": [
+              "com.github.common_workflow_language.FileDef"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "DockerRequirement",
+      "namespace": "com.github.common_workflow_language",
+      "fields": [
+        {
+          "name": "class",
+          "type": "string"
+        },
+        {
+          "name": "dockerPull",
           "type": [
             "null",
-            "com.github.common_workflow_language.Binding"
+            "string"
+          ]
+        },
+        {
+          "name": "dockerLoad",
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        {
+          "name": "dockerFile",
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        {
+          "name": "dockerImageId",
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        {
+          "name": "dockerOutputDirectory",
+          "type": [
+            "null",
+            "string"
           ]
         }
       ]
     },
     {
       "type": "record",
-      "name": "OutputParameter",
+      "name": "EnvironmentDef",
       "namespace": "com.github.common_workflow_language",
       "fields": [
         {
-          "name": "type",
+          "name": "envName",
+          "type": "string"
+        },
+        {
+          "name": "envValue",
+          "type": [
+            "string",
+            "com.github.common_workflow_language.Expression"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnvVarRequirement",
+      "namespace": "com.github.common_workflow_language",
+      "fields": [
+        {
+          "name": "class",
+          "type": "string"
+        },
+        {
+          "name": "envDef",
+          "type": {
+            "type": "array",
+            "items": [
+              "com.github.common_workflow_language.EnvironmentDef"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "ExpressionEngineRequirement",
+      "namespace": "com.github.common_workflow_language",
+      "fields": [
+        {
+          "name": "class",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "name": "requirements",
           "type": [
             "null",
-            "com.github.common_workflow_language.Datatype",
-            "com.github.common_workflow_language.Schema",
+            {
+              "type": "array",
+              "items": [
+                "com.github.common_workflow_language.ProcessRequirement"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "engineCommand",
+          "type": [
+            "null",
             "string",
             {
               "type": "array",
               "items": [
-                "com.github.common_workflow_language.Datatype",
-                "com.github.common_workflow_language.Schema",
                 "string"
               ]
             }
           ]
         },
         {
-          "name": "label",
+          "name": "engineConfig",
           "type": [
             "null",
-            "string"
+            {
+              "type": "array",
+              "items": [
+                "string"
+              ]
+            }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "ScatterFeatureRequirement",
+      "namespace": "com.github.common_workflow_language",
+      "fields": [
         {
-          "name": "description",
-          "type": [
-            "null",
-            "string"
-          ]
-        },
-        {
-          "name": "streamable",
-          "type": "boolean"
-        },
-        {
-          "name": "id",
+          "name": "class",
           "type": "string"
         }
       ]
     },
     {
       "type": "record",
-      "name": "ProcessRequirement",
+      "name": "SchemaDef",
+      "namespace": "com.github.common_workflow_language",
+      "fields": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "SchemaDefRequirement",
+      "namespace": "com.github.common_workflow_language",
+      "fields": [
+        {
+          "name": "class",
+          "type": "string"
+        },
+        {
+          "name": "types",
+          "type": {
+            "type": "array",
+            "items": [
+              "com.github.common_workflow_language.SchemaDef"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "SubworkflowFeatureRequirement",
       "namespace": "com.github.common_workflow_language",
       "fields": [
         {
@@ -549,8 +735,7 @@
             {
               "type": "array",
               "items": [
-                "com.github.common_workflow_language.InputParameter",
-                "com.github.common_workflow_language.InputParameter"
+                "com.github.common_workflow_language.CommandInputParameter"
               ]
             }
           ]
@@ -560,7 +745,7 @@
           "type": {
             "type": "array",
             "items": [
-              "com.github.common_workflow_language.OutputParameter"
+              "com.github.common_workflow_language.CommandOutputParameter"
             ]
           }
         },
@@ -597,7 +782,15 @@
                 "int",
                 "long",
                 "null",
-                "string"
+                "string",
+                "com.github.common_workflow_language.CreateFileRequirement",
+                "com.github.common_workflow_language.DockerRequirement",
+                "com.github.common_workflow_language.EnvVarRequirement",
+                "com.github.common_workflow_language.ExpressionEngineRequirement",
+                "com.github.common_workflow_language.ProcessRequirement",
+                "com.github.common_workflow_language.ScatterFeatureRequirement",
+                "com.github.common_workflow_language.SchemaDefRequirement",
+                "com.github.common_workflow_language.SubworkflowFeatureRequirement"
               ]
             }
           ]
@@ -796,178 +989,102 @@
     },
     {
       "type": "record",
-      "name": "FileDef",
+      "name": "InputParameter",
       "namespace": "com.github.common_workflow_language",
       "fields": [
         {
-          "name": "filename",
+          "name": "type",
           "type": [
+            "null",
+            "com.github.common_workflow_language.Datatype",
+            "com.github.common_workflow_language.Schema",
             "string",
-            "com.github.common_workflow_language.Expression"
+            {
+              "type": "array",
+              "items": [
+                "com.github.common_workflow_language.Datatype",
+                "com.github.common_workflow_language.Schema",
+                "string"
+              ]
+            }
           ]
         },
         {
-          "name": "fileContent",
-          "type": [
-            "string",
-            "com.github.common_workflow_language.Expression"
-          ]
-        }
-      ]
-    },
-    {
-      "type": "record",
-      "name": "CreateFileRequirement",
-      "namespace": "com.github.common_workflow_language",
-      "fields": [
-        {
-          "name": "class",
-          "type": "string"
-        },
-        {
-          "name": "fileDef",
-          "type": {
-            "type": "array",
-            "items": [
-              "com.github.common_workflow_language.FileDef"
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "type": "record",
-      "name": "DockerRequirement",
-      "namespace": "com.github.common_workflow_language",
-      "fields": [
-        {
-          "name": "class",
-          "type": "string"
-        },
-        {
-          "name": "dockerPull",
+          "name": "label",
           "type": [
             "null",
             "string"
           ]
         },
         {
-          "name": "dockerLoad",
+          "name": "description",
           "type": [
             "null",
             "string"
           ]
         },
         {
-          "name": "dockerFile",
-          "type": [
-            "null",
-            "string"
-          ]
-        },
-        {
-          "name": "dockerImageId",
-          "type": [
-            "null",
-            "string"
-          ]
-        },
-        {
-          "name": "dockerOutputDirectory",
-          "type": [
-            "null",
-            "string"
-          ]
-        }
-      ]
-    },
-    {
-      "type": "record",
-      "name": "EnvironmentDef",
-      "namespace": "com.github.common_workflow_language",
-      "fields": [
-        {
-          "name": "envName",
-          "type": "string"
-        },
-        {
-          "name": "envValue",
-          "type": [
-            "string",
-            "com.github.common_workflow_language.Expression"
-          ]
-        }
-      ]
-    },
-    {
-      "type": "record",
-      "name": "EnvVarRequirement",
-      "namespace": "com.github.common_workflow_language",
-      "fields": [
-        {
-          "name": "class",
-          "type": "string"
-        },
-        {
-          "name": "envDef",
-          "type": {
-            "type": "array",
-            "items": [
-              "com.github.common_workflow_language.EnvironmentDef"
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "type": "record",
-      "name": "ExpressionEngineRequirement",
-      "namespace": "com.github.common_workflow_language",
-      "fields": [
-        {
-          "name": "class",
-          "type": "string"
+          "name": "streamable",
+          "type": "boolean",
+          "default": true
         },
         {
           "name": "id",
           "type": "string"
         },
         {
-          "name": "requirements",
+          "name": "inputBinding",
           "type": [
             "null",
-            {
-              "type": "array",
-              "items": [
-                "com.github.common_workflow_language.ProcessRequirement"
-              ]
-            }
+            "com.github.common_workflow_language.Binding"
           ]
-        },
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "OutputParameter",
+      "namespace": "com.github.common_workflow_language",
+      "fields": [
         {
-          "name": "engineCommand",
+          "name": "type",
           "type": [
             "null",
+            "com.github.common_workflow_language.Datatype",
+            "com.github.common_workflow_language.Schema",
             "string",
             {
               "type": "array",
               "items": [
+                "com.github.common_workflow_language.Datatype",
+                "com.github.common_workflow_language.Schema",
                 "string"
               ]
             }
           ]
         },
         {
-          "name": "engineConfig",
+          "name": "label",
           "type": [
             "null",
-            {
-              "type": "array",
-              "items": [
-                "string"
-              ]
-            }
+            "string"
           ]
+        },
+        {
+          "name": "description",
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        {
+          "name": "streamable",
+          "type": "boolean",
+          "default": true
+        },
+        {
+          "name": "id",
+          "type": "string"
         }
       ]
     },
@@ -989,7 +1106,6 @@
             {
               "type": "array",
               "items": [
-                "com.github.common_workflow_language.InputParameter",
                 "com.github.common_workflow_language.InputParameter"
               ]
             }
@@ -1037,7 +1153,15 @@
                 "int",
                 "long",
                 "null",
-                "string"
+                "string",
+                "com.github.common_workflow_language.CreateFileRequirement",
+                "com.github.common_workflow_language.DockerRequirement",
+                "com.github.common_workflow_language.EnvVarRequirement",
+                "com.github.common_workflow_language.ExpressionEngineRequirement",
+                "com.github.common_workflow_language.ProcessRequirement",
+                "com.github.common_workflow_language.ScatterFeatureRequirement",
+                "com.github.common_workflow_language.SchemaDefRequirement",
+                "com.github.common_workflow_language.SubworkflowFeatureRequirement"
               ]
             }
           ]
@@ -1349,7 +1473,8 @@
         },
         {
           "name": "streamable",
-          "type": "boolean"
+          "type": "boolean",
+          "default": true
         }
       ]
     },
@@ -1371,7 +1496,6 @@
             {
               "type": "array",
               "items": [
-                "com.github.common_workflow_language.InputParameter",
                 "com.github.common_workflow_language.InputParameter"
               ]
             }
@@ -1419,7 +1543,15 @@
                 "int",
                 "long",
                 "null",
-                "string"
+                "string",
+                "com.github.common_workflow_language.CreateFileRequirement",
+                "com.github.common_workflow_language.DockerRequirement",
+                "com.github.common_workflow_language.EnvVarRequirement",
+                "com.github.common_workflow_language.ExpressionEngineRequirement",
+                "com.github.common_workflow_language.ProcessRequirement",
+                "com.github.common_workflow_language.ScatterFeatureRequirement",
+                "com.github.common_workflow_language.SchemaDefRequirement",
+                "com.github.common_workflow_language.SubworkflowFeatureRequirement"
               ]
             }
           ]
@@ -1441,17 +1573,6 @@
       ]
     },
     {
-      "type": "record",
-      "name": "ScatterFeatureRequirement",
-      "namespace": "com.github.common_workflow_language",
-      "fields": [
-        {
-          "name": "class",
-          "type": "string"
-        }
-      ]
-    },
-    {
       "type": "enum",
       "name": "ScatterMethod",
       "namespace": "com.github.common_workflow_language",
@@ -1459,48 +1580,6 @@
         "DOTPRODUCT",
         "NESTED_CROSSPRODUCT",
         "FLAT_CROSSPRODUCT"
-      ]
-    },
-    {
-      "type": "record",
-      "name": "SchemaDef",
-      "namespace": "com.github.common_workflow_language",
-      "fields": [
-        {
-          "name": "name",
-          "type": "string"
-        }
-      ]
-    },
-    {
-      "type": "record",
-      "name": "SchemaDefRequirement",
-      "namespace": "com.github.common_workflow_language",
-      "fields": [
-        {
-          "name": "class",
-          "type": "string"
-        },
-        {
-          "name": "types",
-          "type": {
-            "type": "array",
-            "items": [
-              "com.github.common_workflow_language.SchemaDef"
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "type": "record",
-      "name": "SubworkflowFeatureRequirement",
-      "namespace": "com.github.common_workflow_language",
-      "fields": [
-        {
-          "name": "class",
-          "type": "string"
-        }
       ]
     },
     {
@@ -1693,7 +1772,6 @@
             {
               "type": "array",
               "items": [
-                "com.github.common_workflow_language.InputParameter",
                 "com.github.common_workflow_language.InputParameter"
               ]
             }
@@ -1741,7 +1819,15 @@
                 "int",
                 "long",
                 "null",
-                "string"
+                "string",
+                "com.github.common_workflow_language.CreateFileRequirement",
+                "com.github.common_workflow_language.DockerRequirement",
+                "com.github.common_workflow_language.EnvVarRequirement",
+                "com.github.common_workflow_language.ExpressionEngineRequirement",
+                "com.github.common_workflow_language.ProcessRequirement",
+                "com.github.common_workflow_language.ScatterFeatureRequirement",
+                "com.github.common_workflow_language.SchemaDefRequirement",
+                "com.github.common_workflow_language.SubworkflowFeatureRequirement"
               ]
             }
           ]
@@ -1813,7 +1899,8 @@
         },
         {
           "name": "streamable",
-          "type": "boolean"
+          "type": "boolean",
+          "default": true
         },
         {
           "name": "id",

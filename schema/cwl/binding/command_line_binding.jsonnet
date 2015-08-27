@@ -58,7 +58,7 @@ Binding + record("CommandLineBinding") {
 
     doc("Join the array elements into a single string with the elements
         separated by by `itemSeparator`.") +
-    field("itemSeparator", [Avro.Null, Avro.boolean]),
+    field("itemSeparator", [Avro.Null, Avro.string]),
 
     doc("If `valueFrom` is a constant string value, use this as the value and
         apply the binding rules above.

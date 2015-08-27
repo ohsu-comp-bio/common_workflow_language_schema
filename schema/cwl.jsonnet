@@ -33,6 +33,7 @@
 
     /* Parameter */
     CommandInputParameter: import "cwl/parameter/command_input_parameter.jsonnet",
+    CommandOutputParameter: import "cwl/parameter/command_output_parameter.jsonnet",
     InputParameter: import "cwl/parameter/input_parameter.jsonnet",
     OutputParameter: import "cwl/parameter/output_parameter.jsonnet",
     Parameter: import "cwl/parameter/parameter.jsonnet",

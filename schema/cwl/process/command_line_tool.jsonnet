@@ -6,7 +6,9 @@ local Util = import "../../util.jsonnet";
 local doc = Util.doc;
 
 local CWL = import "../../cwl.jsonnet";
+local CommandInputParameter = CWL.classes.CommandInputParameter;
 local CommandLineBinding = CWL.classes.CommandLineBinding;
+local CommandOutputParameter = CWL.classes.CommandOutputParameter;
 local Expression = CWL.classes.Expression;
 local Process = CWL.classes.Process;
 
@@ -128,6 +130,10 @@ doc("A CommandLineTool process is a process implementation for executing a
     [`CommandOutputBinding`](#commandoutputbinding) for details.") +
 
 Process + record("CommandLineTool") {
+
+  inputParameter:: CommandInputParameter,
+  outputParameter:: CommandOutputParameter,
+
   fields +: [
     field("class", Avro.string),
 

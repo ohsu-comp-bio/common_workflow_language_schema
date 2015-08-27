@@ -15,7 +15,7 @@ record("Parameter") + {
   fields: [
 
     doc("Specify valid types of data that may be assigned to this parameter.") +
-    Avro.field("type", [
+    field("type", [
       Avro.Null,
       Datatype,
       Schema,
@@ -24,17 +24,16 @@ record("Parameter") + {
     ]),
 
     doc("A short, human-readable label of this parameter object.") + 
-    Avro.field("label", [Avro.Null, Avro.string]),
+    field("label", [Avro.Null, Avro.string]),
 
     doc("A long, human-readable description of this parameter object.") +
-    Avro.field("description", [Avro.Null, Avro.string]),
+    field("description", [Avro.Null, Avro.string]),
 
-    
     doc("Currently only applies if `type` is `File`.  A value of `true`
         indicates that the file is read or written sequentially without seeking.
         An implementation may use this flag to indicate whether it is valid to
         stream file contents using a named pipe.  Default: `false`.") +
-    Avro.field("streamable", Avro.boolean) +
-    default(false)
+    field("streamable", Avro.boolean) +
+    default(true),
   ],
 }

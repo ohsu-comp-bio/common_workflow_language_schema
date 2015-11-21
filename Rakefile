@@ -1,11 +1,8 @@
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 
-require "rspec/core/rake_task"
 require "common_workflow_language_schema"
 
-RSpec::Core::RakeTask.new(:spec)
-
-task :default => :spec
+task default: :build
 
 task :build do
   File.open('dist/cwl.avpr', 'w') do |file|

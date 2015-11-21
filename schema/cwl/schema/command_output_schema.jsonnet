@@ -11,9 +11,11 @@ local OutputSchema = CWL.classes.OutputSchema;
 
 OutputSchema + record("CommandOutputSchema") {
   fields +: [
-    doc("Describes how to handle the concrete outputs of a process step (such as
-        files created by a program) and describe them in the process output
-        parameter.") +
+    doc(|||
+      Describes how to handle the concrete outputs of a process step (such as
+      files created by a program) and describe them in the process output
+      parameter.
+    |||) +
     field("outputBinding", [Avro.Null, CommandOutputBinding]),
   ]
 }

@@ -4,8 +4,10 @@ local enum = Avro.enum;
 local Util = import "../../util.jsonnet";
 local doc = Util.doc;
 
-doc("The scatter method, as described in [workflow step scatter]
-    (#workflowstep).") +
+doc(|||
+  The scatter method, as described in [workflow step scatter]
+  (#workflowstep).
+|||) +
 
 enum("ScatterMethod", [
   "DOTPRODUCT",

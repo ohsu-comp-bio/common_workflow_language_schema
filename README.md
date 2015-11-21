@@ -8,8 +8,8 @@ schema. Note that the version of the schema that is being build is availabe in
 
 1. Ruby 2.0.0+. See [rbenv](http://rbenv.org/) for installing Ruby.
 2. [Bundler](http://bundler.io/). Run `gem install bundler` to install.
-3. [jsonnet](http://google.github.io/jsonnet/doc/index.html). If on OSX, you can
-   install this with `brew install jsonnet`.
+3. [jsonnet](http://google.github.io/jsonnet/doc/index.html) v0.8.5. If using
+   OS X, you can install this with `brew install jsonnet`.
 
 ## Building the schema ##
 

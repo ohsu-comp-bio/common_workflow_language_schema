@@ -41,8 +41,10 @@ record("Schema") {
       Avro.array([Avro.Null, Datatype, self.name, Avro.string]),
     ]),
 
-    doc("When `type` is `map`, defines the value type for the key/value
-        pairs.") +
+    doc(|||
+      When `type` is `map`, defines the value type for the key/value
+      pairs.
+    |||) +
     field("values", [
       Avro.Null,
       Datatype,

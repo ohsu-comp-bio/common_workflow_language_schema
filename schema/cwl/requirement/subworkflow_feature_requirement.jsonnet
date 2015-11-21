@@ -7,7 +7,9 @@ local doc = Util.doc;
 local CWL = import "../../cwl.jsonnet";
 local ProcessRequirement = CWL.classes.ProcessRequirement;
 
-doc("Indicates that the workflow platform must support nested workflows in
-    the `run` field of (WorkflowStep)(#workflowstep).") +
+doc(|||
+  Indicates that the workflow platform must support nested workflows in
+  the `run` field of (WorkflowStep)(#workflowstep).
+|||) +
 
 ProcessRequirement + record("SubworkflowFeatureRequirement")

@@ -8,7 +8,9 @@ local doc = Util.doc;
 local CWL = import "../../cwl.jsonnet";
 local ProcessRequirement = CWL.classes.ProcessRequirement;
 
-doc("Indicates that the workflow platform must support the `scatter` and
-    `scatterMethod` fields of [WorkflowStep](#workflowstep).") +
+doc(|||
+  Indicates that the workflow platform must support the `scatter` and
+  `scatterMethod` fields of [WorkflowStep](#workflowstep).
+|||) +
 
 ProcessRequirement + record("ScatterFeatureRequirement")

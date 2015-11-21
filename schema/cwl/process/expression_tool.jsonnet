@@ -14,8 +14,10 @@ Process + record("ExpressionTool") {
   fields +: [
     field("class", Avro.string),
 
-    doc("The expression to execute.  The expression must return a JSON object which
-        matches the output parameters of the ExpressionTool.") +
+    doc(|||
+      The expression to execute. The expression must return a JSON object which
+      matches the output parameters of the ExpressionTool.
+    |||) +
     field("expression", Expression),
   ]
 }

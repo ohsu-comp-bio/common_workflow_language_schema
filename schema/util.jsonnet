@@ -1,7 +1,7 @@
 local renderDoc = std.extVar("DOC") == "true";
 
 {
-  doc(contents):: if renderDoc then {doc: contents} else {doc:: contents},
+  doc(contents):: { [if renderDoc then "doc"]: contents },
 
   default(value):: {default: value},
 

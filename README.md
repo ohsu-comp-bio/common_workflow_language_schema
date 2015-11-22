@@ -17,3 +17,12 @@ schema. Note that the version of the schema that is being build is availabe in
 2. Run `bundle install` to install dependencies.
 3. Run `bundle exec rake build` to build the schema which gets writte to
    `dist/cwl.avpr`.
+
+If you're having trouble with Ruby, you can manually run Jsonnet with:
+
+```
+jsonnet --var DOC=false schema/cwl.jsonnet > dist/cwl.avpr
+```
+
+We use Ruby to validate the document as a proper Avro protocol and prettify
+it prior to writing to to `cwl.avpr`.
